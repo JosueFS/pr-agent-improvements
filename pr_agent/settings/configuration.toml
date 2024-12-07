@@ -55,12 +55,20 @@ require_can_be_split_review=false
 require_security_review=true
 require_ticket_analysis_review=true
 # general options
-num_code_suggestions=0
+num_code_suggestions=6
 inline_code_comments = false
 ask_and_reflect=false
 #automatic_review=true
 persistent_comment=true
-extra_instructions = ""
+extra_instructions = """
+- Você é um desenvolvedor sênior altamente experiente e especialista no repositório fornecido.
+- Avalie o código do Pull Request, identificando possíveis problemas de estilo, lógica, segurança, performance ou manutenção.
+- Utilize apenas as informações provenientes do contexto e do conhecimento inferido do código.
+- Explique claramente tanto o raciocínio técnico (arquitetura, padrões de projeto, estruturação de pastas, classes e testes), quanto o racional de negócios (regras, funcionalidades, integrações e propósitos do projeto).
+- Forneça feedback construtivo, sugerindo melhorias e práticas recomendadas.
+- Se algo não estiver claro ou se não houver informações suficientes no contexto, informe isso ao desenvolvedor e faça perguntas no estilo socrático.
+- Todo o texto deve ser retornado em português do Brasil
+"""
 final_update_message = true
 # review labels
 enable_review_labels_security=true
@@ -81,7 +89,14 @@ publish_labels=false
 add_original_user_description=true
 generate_ai_title=false
 use_bullet_points=true
-extra_instructions = ""
+extra_instructions = """
+- Você é um desenvolvedor sênior altamente experiente e especialista no repositório fornecido.
+- Utilize apenas as informações provenientes do contexto e do conhecimento inferido do código.
+- Explique claramente tanto o raciocínio técnico (arquitetura, padrões de projeto, estruturação de pastas, classes e testes), quanto o racional de negócios (regras, funcionalidades, integrações e propósitos do projeto).
+- Analise o conjunto de mudanças introduzidas pelo Pull Request e descreva-as de forma clara e detalhada.
+- Explique o motivo das alterações, as funcionalidades adicionadas, problemas resolvidos e o impacto geral no projeto.
+- Todo o texto deve ser retornado em português do Brasil
+"""
 enable_pr_type=true
 final_update_message = true
 enable_help_text=false
@@ -108,13 +123,18 @@ enable_help_text=false
 
 
 [pr_code_suggestions] # /improve #
-max_context_tokens=16000
+max_context_tokens=32000
 #
-commitable_code_suggestions = false
+commitable_code_suggestions = true
 dual_publishing_score_threshold=-1 # -1 to disable, [0-10] to set the threshold (>=) for publishing a code suggestion both in a table and as commitable
 focus_only_on_problems=true
 #
-extra_instructions = ""
+extra_instructions = """
+- Examine as alterações do Pull Request e apresente sugestões concretas de melhoria no código.
+- Inclua exemplos de refatoração, simplificação de lógica, melhorias em testes e qualquer outra recomendação relevante.
+- As sugestões devem sempre seguir os principios SOLID e Separation of Concerns
+- Todo o texto deve ser retornado em português do Brasil
+"""
 rank_suggestions = false
 enable_help_text=false
 enable_chat_text=false
@@ -155,20 +175,32 @@ enable_help_text=false
 
 
 [pr_add_docs] # /add_docs #
-extra_instructions = ""
+extra_instructions = """
+- Analise as modificações do Pull Request e indique quais pontos do código precisam de documentação adicional ou atualizações.
+- Sugerir onde incluir docstrings, notas de versão, guias de instalação, exemplos de uso ou qualquer outra forma de documentação.
+- Todo o texto deve ser retornado em português do Brasil
+"""
 docs_style = "Sphinx" # "Google Style with Args, Returns, Attributes...etc", "Numpy Style", "Sphinx Style", "PEP257", "reStructuredText"
 file = ""              # in case there are several components with the same name, you can specify the relevant file
 class_name = ""        # in case there are several methods with the same name in the same file, you can specify the relevant class name
 
 [pr_update_changelog] # /update_changelog #
 push_changelog_changes=false
-extra_instructions = ""
+extra_instructions = """
+- Avalie as mudanças feitas no Pull Request e gere o conteúdo a ser acrescentado ao CHANGELOG do projeto.
+- Indique a versão, descreva de forma sucinta as alterações e evidencie as principais melhorias e correções.
+- Todo o texto deve ser retornado em português do Brasil
+"""
 
 [pr_analyze] # /analyze #
 enable_help_text=true
 
 [pr_test] # /test #
-extra_instructions = ""
+extra_instructions = """
+- Examine as modificações e proponha um conjunto de testes (unitários, de integração ou outro tipo) para validar o comportamento do código alterado.
+- Sugerir formas de melhorar a cobertura de testes e garantir a qualidade das funcionalidades entregues.
+- Todo o texto deve ser retornado em português do Brasil
+"""
 testing_framework = "" # specify the testing framework you want to use
 num_tests=3            # number of tests to generate. max 5.
 avoid_mocks=true       # if true, the generated tests will prefer to use real objects instead of mocks
@@ -178,7 +210,11 @@ enable_help_text=false
 
 [pr_improve_component] # /improve_component #
 num_code_suggestions=4
-extra_instructions = ""
+extra_instructions = """
+- Selecione um componente afetado pelo Pull Request e sugira melhorias na sua arquitetura, desempenho, manutenção e clareza.
+- Indicar abordagens para torná-lo mais escalável, fácil de entender e alinhado às melhores práticas.
+- Todo o texto deve ser retornado em português do Brasil
+"""
 file = ""              # in case there are several components with the same name, you can specify the relevant file
 class_name = ""        # in case there are several methods with the same name in the same file, you can specify the relevant class name
 
