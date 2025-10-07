@@ -28,6 +28,10 @@ MAX_TOKENS = {
     'gpt-4.1-mini-2025-04-14': 1047576,
     'gpt-4.1-nano': 1047576,
     'gpt-4.1-nano-2025-04-14': 1047576,
+    'gpt-5-nano': 200000,  # 200K, but may be limited by config.max_model_tokens
+    'gpt-5-mini': 200000,  # 200K, but may be limited by config.max_model_tokens
+    'gpt-5': 200000,
+    'gpt-5-2025-08-07': 200000,
     'o1-mini': 128000,  # 128K, but may be limited by config.max_model_tokens
     'o1-mini-2024-09-12': 128000,  # 128K, but may be limited by config.max_model_tokens
     'o1-preview': 128000,  # 128K, but may be limited by config.max_model_tokens
@@ -45,6 +49,7 @@ MAX_TOKENS = {
     'command-nightly': 4096,
     'deepseek/deepseek-chat': 128000,  # 128K, but may be limited by config.max_model_tokens
     'deepseek/deepseek-reasoner': 64000,  # 64K, but may be limited by config.max_model_tokens
+    'openai/qwq-plus': 131072,  # 131K context length, but may be limited by config.max_model_tokens
     'replicate/llama-2-70b-chat:2c1608e18606fad2812020dc541930f2d0495ce32eee50074220b87300bc16e1': 4096,
     'meta-llama/Llama-2-7b-chat-hf': 4096,
     'vertex_ai/codechat-bison': 6144,
@@ -111,16 +116,17 @@ MAX_TOKENS = {
     "bedrock/apac.anthropic.claude-3-7-sonnet-20250219-v1:0": 200000,
     "bedrock/apac.anthropic.claude-sonnet-4-20250514-v1:0": 200000,
     'claude-3-5-sonnet': 100000,
-    'groq/meta-llama/llama-4-scout-17b-16e-instruct': 131072,
-    'groq/meta-llama/llama-4-maverick-17b-128e-instruct': 131072,
     'bedrock/us.meta.llama4-scout-17b-instruct-v1:0': 128000,
     'bedrock/us.meta.llama4-maverick-17b-instruct-v1:0': 128000,
-    'groq/llama3-8b-8192': 8192,
-    'groq/llama3-70b-8192': 8192,
-    'groq/llama-3.1-8b-instant': 8192,
+    'groq/openai/gpt-oss-120b': 131072,
+    'groq/openai/gpt-oss-20b': 131072,
+    'groq/qwen/qwen3-32b': 131000,
+    'groq/moonshotai/kimi-k2-instruct': 131072,
+    'groq/deepseek-r1-distill-llama-70b': 128000,
+    'groq/meta-llama/llama-4-maverick-17b-128e-instruct': 131072,
+    'groq/meta-llama/llama-4-scout-17b-16e-instruct': 131072,
     'groq/llama-3.3-70b-versatile': 128000,
-    'groq/mixtral-8x7b-32768': 32768,
-    'groq/gemma2-9b-it': 8192,
+    'groq/llama-3.1-8b-instant': 128000,
     'xai/grok-2': 131072,
     'xai/grok-2-1212': 131072,
     'xai/grok-2-latest': 131072,
@@ -670,4 +676,9 @@ SUPPORT_REASONING_EFFORT_MODELS = [
 CLAUDE_EXTENDED_THINKING_MODELS = [
     "anthropic/claude-3-7-sonnet-20250219",
     "claude-3-7-sonnet-20250219"
+]
+
+# Models that require streaming mode
+STREAMING_REQUIRED_MODELS = [
+    "openai/qwq-plus"
 ]
